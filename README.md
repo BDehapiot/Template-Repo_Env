@@ -34,21 +34,32 @@ chmod +x file.sh && ./file.sh
 - Unzip the file to a known location (e.g. `C:\Users\YourUsername\Desktop`)
 
 #### 2 - Install miniconda: 
-- Download the last installer and run the .exe file
+- Download the last installer and run the `.exe` file
 - Use default options (it can be modified later anyway)
 
 #### 3 - Setup conda environment: 
-- Navigate to your Anaconda3 folder through the start menu and run `Anaconda Powershell Prompt`  
+- Navigate to your Anaconda3 folder using the start menu and run `Anaconda Powershell Prompt`  
 - Your prompt should look like this:
  ```bash
 (base) PS C:\Users\YourUsername>
 ```
 - `(base)` at the beginning of the prompt means that you are in your base conda environment
-- Now you can check your conda (miniconda) installation by typing the following command:
+- You can move to the GitHub repository (change path if ) 
  ```bash
-conda --version
+cd Desktop/{repo_name}-main
 ```
-- You should be able to retreive the conda version, otherwise if conda is not recognized please proceed again to step 2. 
+- Now your prompt should look like this:
+ ```bash
+(base) PS C:\Users\YourUsername>\Desktop\{repo_name}-main
+```
+- Now create a new environment: 
+ ```bash
+conda create -n {env_name} python={python_version} pip
+```
+- Activate the newly created environment: 
+ ```bash
+conda activate {env_name}
+```
   
 </details>
 
