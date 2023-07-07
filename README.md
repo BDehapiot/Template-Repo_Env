@@ -1,10 +1,10 @@
 ## Install
 
-#### 1 - Download the GitHub repository:  
+#### 1 - Download the GitHub repository: 
+![Static Badge](https://img.shields.io/badge/%3C%3E%20Code%20-%20blue?color=rgb(30%2C%20135%2C%2060))
 - Download the GitHub repository by clicking the green `<> Code` button and select `Download ZIP`
 - Unzip the file to known location
 - Open your terminal and move to this location
-
 
 #### 2 - Install miniconda:  
 https://docs.conda.io/en/latest/miniconda.html
