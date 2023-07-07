@@ -1,6 +1,6 @@
 ## Install
 
-#### 1 - Download the GitHub repository: 
+<!-- #### 1 - Download the GitHub repository: 
 ![Static Badge](https://img.shields.io/badge/%3C%3E%20Code%20-%20blue?color=rgb(30%2C%20135%2C%2060))
 - Download the GitHub repository by clicking the green `<> Code` button and select `Download ZIP`
 - Unzip the file to a known location
@@ -22,5 +22,45 @@ bash file.sh
 Download the last installer (bash) and run the following command in the terminal (ctrl + alt + T)
 ```bash
 chmod +x file.sh && ./file.sh
+``` -->
+
+<details>
+
+<summary>Windows</summary>
+
+#### 1 - Download the GitHub repository: 
+![Static Badge](https://img.shields.io/badge/%3C%3E%20Code%20-%20blue?color=rgb(30%2C%20135%2C%2060))
+- Download the GitHub repository by clicking the green `<> Code` button and select `Download ZIP`
+- Unzip the file to a known location (e.g. `C:\Users\YourUsername\Desktop`)
+
+#### 2 - Install miniconda: 
+- Download the last installer and run the .exe file
+- Use default options (it can be modified later anyway)
+
+#### 3 - Setup conda environment: 
+- Navigate to your Anaconda3 folder through the start menu and run `Anaconda Powershell Prompt`  
+- Your prompt should look like this:
+ ```bash
+(base) PS C:\Users\YourUsername>
 ```
+- `(base)` at the beginning of the prompt means that you are in your base conda environment
+- Now you can check your conda (miniconda) installation by typing the following command:
+ ```bash
+conda --version
+```
+- You should be able to retreive the conda version, otherwise if conda is not recognized please proceed again to step 2. 
+  
+</details>
+
+<details>
+
+  <summary>MacOS</summary>
+  
+</details>
+
+<details>
+
+  <summary>Linux</summary>
+  
+</details>
 
