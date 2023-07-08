@@ -40,7 +40,7 @@ conda activate {env_name}
  ```bash
 pip install -r requirements.txt
 ```
----
+<hr style=\"border-top: 1px\">
 </details>
 
 <details> <summary>MacOS</summary>
@@ -95,7 +95,7 @@ conda activate {env_name}
  ```bash
 pip install -r requirements.txt
 ```
----
+<hr style=\"border-top: 1px\">
 </details>
 
 <details> <summary>Linux</summary>
@@ -151,6 +151,6 @@ conda activate {env_name}
 pip install -r requirements.txt
 ```
 
----
+<hr style=\"border-top: 1px\">
 </details>
 
