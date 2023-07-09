@@ -11,25 +11,22 @@ REPO_NAME = ROOT_PATH.name
 
 #%%
 
-# Read congig.yml
-with open(ROOT_PATH / "config.yml", 'r') as stream:
-    try:
-        config = yaml.safe_load(stream)
-    except yaml.YAMLError as exc:
-        print(exc)
+# # Read congig.yml
+# with open(ROOT_PATH / "config.yml", 'r') as stream:
+#     try:
+#         config = yaml.safe_load(stream)
+#     except yaml.YAMLError as exc:
+#         print(exc)
 
-if config['repo_type'] == 'lite':
-    Path(ROOT_PATH / "data").mkdir(parents=True, exist_ok=True)
-    Path(ROOT_PATH / "data" / ".gitkeep").touch()
-    pass
+# if config['repo_type'] == 'lite':
+#     Path(ROOT_PATH / "data").mkdir(parents=True, exist_ok=True)
+#     Path(ROOT_PATH / "data" / ".gitkeep").touch()
+#     pass
 
-if config['repo_type'] == 'full':
-    Path(ROOT_PATH / "tests").mkdir(parents=True, exist_ok=True)
-    Path(ROOT_PATH / "tests" / ".gitkeep").touch()
-    pass
-
-if config['repo_type'] == 'full-build':
-    pass
+# if config['repo_type'] == 'full':
+#     pass
+# if config['repo_type'] == 'full-build':
+#     pass
 
 # 
 

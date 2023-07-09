@@ -1,3 +1,0 @@
-# General parameters
-python_version: '3.11'
-include_tests: False

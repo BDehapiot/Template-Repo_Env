@@ -1,0 +1,6 @@
+# General parameters
+repo_type: 'lite' # 'lite', 'full', 'full-build'
+readme_install: 'python' # 'python', 'fiji', 'none'
+
+# Dependencies
+python_version: '3.11'
