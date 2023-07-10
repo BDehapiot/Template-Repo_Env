@@ -4,3 +4,7 @@ readme_install: 'python' # 'python', 'fiji', 'none'
 
 # Dependencies
 python_version: '3.11'
+
+# Tests
+python_versions: ['3.9', '3.10', '3.11']  
+os_versions: [ubuntu-latest, windows-latest, macos-latest]

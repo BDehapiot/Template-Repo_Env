@@ -21,21 +21,21 @@ https://docs.conda.io/en/latest/miniconda.html
 - `(base)` at the beginning of the prompt means that you are in your base conda environment
 - Navigate to the GitHub repository using the `cd` command: 
  ```bash
-cd Desktop/my-test-main
+cd Desktop/{repo_name}-main
 ```
 - The prompt should change to reflect your current location:
  ```bash
-(base) PS C:\Users\YourUsername>\Desktop\my-test-main
+(base) PS C:\Users\YourUsername>\Desktop\{repo_name}-main
 ```
 - Create a new environment: 
  ```bash
-conda create -n test python=3.11 pip
+conda create -n {env_name} python={python_version} pip
 ```
 - Activate your newly created environment:
  ```bash
-conda activate test
+conda activate {env_name}
 ```
-- Your prompt should now start with `(test)`
+- Your prompt should now start with `({env_name})`
 - Finally, install all project dependencies using `pip`: 
  ```bash
 pip install -r requirements.txt
@@ -76,21 +76,21 @@ bash Miniconda3-latest-MacOSX-x86_64.sh
 - `(base)` at the beginning of the prompt means that you are in your base conda environment
 - Navigate to the GitHub repository using the `cd` command: 
  ```bash
-cd Desktop/my-test-main
+cd Desktop/{repo_name}-main
 ```
 - The prompt should change to reflect your current location:
  ```bash
-(base) YourUsername@MacBook-Pro my-test-main %
+(base) YourUsername@MacBook-Pro {repo_name}-main %
 ```
 - Create a new environment: 
  ```bash
-conda create -n test python=3.11 pip
+conda create -n {env_name} python={python_version} pip
 ```
 - Activate your newly created environment:
  ```bash
-conda activate test
+conda activate {env_name}
 ```
-- Your prompt should now start with `(test)`
+- Your prompt should now start with `({env_name})`
 - Finally, install all project dependencies using `pip`: 
  ```bash
 pip install -r requirements.txt
@@ -131,21 +131,21 @@ bash Miniconda3-latest-Linux-x86_64.sh
 - `(base)` at the beginning of the prompt means that you are in your base conda environment
 - Navigate to the GitHub repository using the `cd` command: 
  ```bash
-cd Desktop/my-test-main
+cd Desktop/{repo_name}-main
 ```
 - The prompt should change to reflect your current location:
  ```bash
-(base) YourUsername@YourMachine:~/Desktop/my-test-main$
+(base) YourUsername@YourMachine:~/Desktop/{repo_name}-main$
 ```
 - Create a new environment: 
  ```bash
-conda create -n test python=3.11 pip
+conda create -n {env_name} python={python_version} pip
 ```
 - Activate your newly created environment:
  ```bash
-conda activate test
+conda activate {env_name}
 ```
-- Your prompt should now start with `(test)`
+- Your prompt should now start with `({env_name})`
 - Finally, install all project dependencies using `pip`: 
  ```bash
 pip install -r requirements.txt
@@ -153,3 +153,4 @@ pip install -r requirements.txt
 
 <hr style=\"border-top: 1px\">
 </details>
+

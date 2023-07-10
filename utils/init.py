@@ -1,34 +1,48 @@
 #%% Imports -------------------------------------------------------------------
 
 import yaml
+import json
+import requests
 from pathlib import Path
 from jinja2 import Template
 
 #%% Initialize ----------------------------------------------------------------
 
 ROOT_PATH = Path('.').resolve()
+REPO_OWNER = "BDehapiot"
 REPO_NAME = ROOT_PATH.name
+REPO_METADATA = requests.get(
+    f'https://api.github.com/repos/{REPO_OWNER}/{REPO_NAME}'
+    ).json()
+ENV_NAME = REPO_NAME.split('_', 1)[1] if '_' in REPO_NAME else REPO_NAME
 
 #%%
 
-# # Read congig.yml
-# with open(ROOT_PATH / "config.yml", 'r') as stream:
-#     try:
-#         config = yaml.safe_load(stream)
-#     except yaml.YAMLError as exc:
-#         print(exc)
+# Read config.yml
+with open(ROOT_PATH / "utils" / "config.yml", 'r') as stream:
+    try:
+        config = yaml.safe_load(stream)
+    except yaml.YAMLError as exc:
+        print(exc)
 
-# if config['repo_type'] == 'lite':
-#     Path(ROOT_PATH / "data").mkdir(parents=True, exist_ok=True)
-#     Path(ROOT_PATH / "data" / ".gitkeep").touch()
-#     pass
+# Format repository
+if config['repo_type'] == 'lite':
+    pass
+if config['repo_type'] == 'full':
+    pass
+if config['repo_type'] == 'full-build':
+    pass
 
-# if config['repo_type'] == 'full':
-#     pass
-# if config['repo_type'] == 'full-build':
-#     pass
+# Replace placeholders
+with open(ROOT_PATH / 'README_copy.md', 'r') as file:
+    template_text = file.read()
+template = Template(template_text)
+rendered_text = template.render(
+    repo_name=REPO_NAME,
+    env_name=ENV_NAME,
+    python_version=config['python_version'],
+    )
 
-# 
 
 # import subprocess
 # import sys

@@ -1,10 +1,12 @@
+# Init
+pyyaml
+requests
+Jinja2
+pytest
+
 # Core
 numpy
 scipy
 scikit-image
 matplotlib
 
-# Tools
-pyyaml
-Jinja2
-pytest
