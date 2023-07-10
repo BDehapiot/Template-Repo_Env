@@ -1,12 +1,11 @@
-# Init
-pyyaml
+# Default
 requests
-Jinja2
 pytest
 
-# Core
+# Project
 numpy
 scipy
+pandas
 scikit-image
 matplotlib
-
+joblib
