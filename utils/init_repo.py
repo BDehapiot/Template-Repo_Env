@@ -61,7 +61,7 @@ def create_badges():
         f"labelColor=rgb(50%2C60%2C65)) "
     )
 
-    # Last commit
+    # Last commit (seems wrong!)
     try:
         last_commit_str = github[0]['commit']['committer']['date']
     except (KeyError, IndexError):
