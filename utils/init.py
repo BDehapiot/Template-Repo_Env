@@ -8,7 +8,7 @@ from pathlib import Path
 
 #%% Initialize ----------------------------------------------------------------
 
-ROOT_PATH = Path(".").resolve()
+ROOT_PATH = Path(__file__).resolve().parents[1]
 REPO_OWNER = "BDehapiot"
 REPO_NAME = ROOT_PATH.name
 ENV_NAME = REPO_NAME.split("_", 1)[1] if "_" in REPO_NAME else REPO_NAME
