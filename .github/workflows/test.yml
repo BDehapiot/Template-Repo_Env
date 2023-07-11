@@ -16,8 +16,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: {{ os_versions }}
-        python-version: {{ python_versions }}
+        os: {{ tested_os }}
+        python-version: {{ tested_python }}
 
     steps:
     
