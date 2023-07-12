@@ -61,25 +61,21 @@ def create_badges():
         f"labelColor=rgb(50%2C60%2C65)) "
     )
 
-    # Last commit (seems wrong!)
-    try:
-        last_commit_str = github[0]['commit']['committer']['date']
-    except (KeyError, IndexError):
-        last_commit_str = "none"
-    last_commit_url = urllib.parse.quote(last_commit_str)
-    badges["last_commit"] = (
-        f"![Last_commit Badge](https://img.shields.io/badge/Last_commit-"
-        f"{last_commit_url}-green?&"
-        f"color=rgb(149%2C157%2C165)&"
-        f"labelColor=rgb(50%2C60%2C65)) "
-    )
+    # Test (GitHub actions)
+    if config["repo_type"] in ["python_test", "python_build"]:
+        badges["test"] = (
+            f"[![Test](https://github.com/{REPO_OWNER}/{REPO_NAME}"
+            f"/actions/workflows/test.yml/badge.svg)]"
+            f"(https://github.com/{REPO_OWNER}/{REPO_NAME}"
+            f"/actions/workflows/test.yml)"
+        )
 
     # Python version(s)
     if config["repo_type"] in ["python_lite"]:
         
         python_str = config["python_version"]
 
-    elif config["repo_type"] in ["python_full", "python_build"]:
+    elif config["repo_type"] in ["python_test", "python_build"]:
         
         python_str = config["tested_python"]
         python_str = python_str.replace("[", "")
@@ -96,7 +92,7 @@ def create_badges():
     )
         
     # OS version(s)
-    if config["repo_type"] in ["python_full", "python_build"]:
+    if config["repo_type"] in ["python_test", "python_build"]:
         
         os_name, os_version = [], []
         os_str = config["tested_os"]
@@ -143,13 +139,12 @@ badges = create_badges()
 def assemble_readme():
 
     with open(ROOT_PATH / "README.md", "w") as file:
-        file.write(badges["python"])
+        file.write(badges["author"] + "\n")
+        file.write(badges["license"] + "\n\n")
+        file.write(badges["test"] + "\n\n")
+        file.write(badges["python"] + "\n")
         for badge in badges["os"]:
-            file.write(badge)
-        file.write(badges["author"])
-        file.write(badges["license"])
-        file.write(badges["last_commit"])
-        
+            file.write(badge + "\n")
 
 assemble_readme()
 
@@ -160,7 +155,7 @@ assemble_readme()
 #     description = f"{github["description"]}"
 
 #     #
-#     if config["repo_type"] in ["python_lite", "python_full", "python_build"]:
+#     if config["repo_type"] in ["python_lite", "python_test", "python_build"]:
 #         with open(ROOT_PATH / "utils" / "markdown" / "instructions_python.md", "r") as file:
 #             instructions = file.read()
 #     elif config["repo_type"] == "Fiji":
@@ -183,7 +178,7 @@ assemble_readme()
 #     with open(ROOT_PATH / "README.md", "w") as file:
 #         file.write(python_badge)
 #         file.write(license_badge)
-#         if config["repo_type"] in ["python_full", "python_build"]:
+#         if config["repo_type"] in ["python_test", "python_build"]:
 #             for os_badge in os_badges:
 #                 file.write(" " + os_badge)
 #         file.write("\n" + title + "\n" + description)
