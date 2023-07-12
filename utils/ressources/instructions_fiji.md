@@ -6,12 +6,12 @@
 ### 2 - Install / Update Fiji
 https://imagej.net/software/fiji/  
 
-<u>Fiji **is not** installed on your system:</u>
+<ins>Fiji **is not** installed on your system:</ins>
 
 - Download Fiji from the official website (link above)
 - Unzip the file to a known location
 
-<u>Fiji **is** already installed on your system:</u>
+<ins>Fiji **is** already installed on your system:</ins>
 
 #### Option #1
 - Update ImageJ by clicking > `Help` > `Update ImageJ...`

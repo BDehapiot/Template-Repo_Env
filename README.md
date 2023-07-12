@@ -1,7 +1,7 @@
 ![Author Badge](https://img.shields.io/badge/Author-Benoit%20Dehapiot-green?color=rgb(149%2C157%2C165)&labelColor=rgb(50%2C60%2C65)) 
 ![License Badge](https://img.shields.io/badge/License-GNU%20General%20Public%20License%20v3.0-green?&color=rgb(149%2C157%2C165)&labelColor=rgb(50%2C60%2C65)) 
 
-![IJM Badge](https://img.shields.io/badge/-ImageJMacro-blue?logo=ImageJ&logoColor=rgb(149%2C157%2C165)&labelColor=rgb(50%2C60%2C65)) 
+![IJM Badge](https://img.shields.io/badge/-ImageJ%20Macro-blue?logo=ImageJ&logoColor=rgb(149%2C157%2C165)&labelColor=rgb(50%2C60%2C65)) 
 
 # Template-Repo_Env
 
@@ -21,12 +21,12 @@ Describe repository content and usage
 ### 2 - Install / Update Fiji
 https://imagej.net/software/fiji/  
 
-<u>Fiji **is not** installed on your system:</u>
+<ins>Fiji **is not** installed on your system:</ins>
 
 - Download Fiji from the official website (link above)
 - Unzip the file to a known location
 
-<u>Fiji **is** already installed on your system:</u>
+<ins>Fiji **is** already installed on your system:</ins>
 
 #### Option #1
 - Update ImageJ by clicking > `Help` > `Update ImageJ...`

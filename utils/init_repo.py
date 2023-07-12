@@ -115,7 +115,7 @@ def create_badges():
     if config["repo_type"] in ["fiji"]:
         badges["fiji"] = (
             f"![IJM Badge](https://img.shields.io/badge/-"
-            f"ImageJMacro-blue?logo=ImageJ&"
+            f"ImageJ%20Macro-blue?logo=ImageJ&"
             f"logoColor=rgb(149%2C157%2C165)&"
             f"labelColor=rgb(50%2C60%2C65)) "
         )
