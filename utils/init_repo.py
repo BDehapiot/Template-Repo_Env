@@ -114,7 +114,7 @@ def create_badges():
     # Fiji
     if config["repo_type"] in ["fiji"]:
         badges["fiji"] = (
-            f"![IJM Badge](https://img.shields.io/badge/-"
+            f"![Fiji Badge](https://img.shields.io/badge/Fiji-"
             f"ImageJ%20Macro-blue?logo=ImageJ&"
             f"logoColor=rgb(149%2C157%2C165)&"
             f"labelColor=rgb(50%2C60%2C65)) "
@@ -157,7 +157,7 @@ def create_badges():
         
     # OS version(s)
     badges["os"] = []
-    if config["repo_type"] in ["python_lite", "python_build"]:
+    if config["repo_type"] in ["fiji", "python_lite", "python_build"]:
 
         badges["os"].append(
             f"![Windows Badge](https://img.shields.io/badge/Windows-"
@@ -239,8 +239,8 @@ def get_dependencies():
                     )
                 
     return dependencies
-
-dependencies = get_dependencies()
+if "python" in config["repo_type"]:
+    dependencies = get_dependencies()
 
 #%% Assemble readme -----------------------------------------------------------
 
@@ -283,9 +283,10 @@ def assemble_readme():
         file.write("\n" + instructions + "\n") 
 
         # Dependencies
-        file.write("\n" + f"## Dependencies" + "\n") 
-        for dependency in dependencies:
-            file.write("\n" + dependency)
+        if "python" in config["repo_type"]:
+            file.write("\n" + f"## Dependencies" + "\n") 
+            for dependency in dependencies:
+                file.write("\n" + dependency)
 
 assemble_readme()
 

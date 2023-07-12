@@ -13,11 +13,11 @@ https://imagej.net/software/fiji/
 
 <ins>Fiji **is** already installed on your system:</ins>
 
-#### Option #1
+Option #1
 - Update ImageJ by clicking > `Help` > `Update ImageJ...`
 - Update Fiji by clicking > `Help` > `Update...`
 
-#### Option #2
+Option #2
 - Install a new Fiji instance to avoid modifying your own
 
 ### 3 - Run the macro
