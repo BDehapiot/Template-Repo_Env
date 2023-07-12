@@ -1,6 +1,6 @@
 # General ---------------------------------------------------------------------
 
-repo_type: "python_test" # "python_lite", "python_test", "python_build", "Fiji" 
+repo_type: "python_lite" # "python_lite", "python_build", "python_test", "Fiji" 
 python_version: "3.11"
 
 # Readme ----------------------------------------------------------------------

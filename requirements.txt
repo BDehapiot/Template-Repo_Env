@@ -2,6 +2,7 @@
 pyyaml
 requests
 pytest
+pytest-cov
 
 # Project
 numpy

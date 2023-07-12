@@ -1,0 +1,70 @@
+numpy:
+  webpage: "https://numpy.org/"
+  PyPI: "https://pypi.org/project/numpy/"
+  GitHub: "https://github.com/numpy/numpy"
+
+scipy:
+  webpage: "https://scipy.org/"
+  PyPI: "https://pypi.org/project/scipy/"
+  GitHub: "https://github.com/scipy/scipy"
+  
+pandas:
+  webpage: "https://pandas.pydata.org/"
+  PyPI: "https://pypi.org/project/pandas/"
+  GitHub: "https://github.com/pandas-dev/pandas"
+
+scikit-image:
+  webpage: "https://scikit-image.org/"
+  PyPI: "https://pypi.org/project/scikit-image/"
+  GitHub: "https://github.com/scikit-image/scikit-image"
+  
+matplotlib:
+  webpage: "https://matplotlib.org/"
+  PyPI: "https://pypi.org/project/matplotlib/"
+  GitHub: "https://github.com/matplotlib/matplotlib"
+
+joblib:
+  webpage: "https://joblib.readthedocs.io/en/stable/"
+  PyPI: "https://pypi.org/project/joblib/"
+  GitHub: "https://github.com/joblib/joblib" 
+
+opencv-python:
+  webpage: "https://opencv.org/"
+  PyPI: "https://pypi.org/project/opencv-python/"
+  GitHub: "https://github.com/opencv/opencv-python"
+  
+scikit-learn:
+  webpage: "https://scikit-learn.org/stable/"
+  PyPI: https://pypi.org/project/scikit-learn/
+  GitHub: https://github.com/scikit-learn/scikit-learn
+
+napari:
+  webpage: "https://napari.org/stable/"
+  PyPI: "https://pypi.org/project/napari/"
+  GitHub: "https://github.com/napari/napari"
+  
+nd2:
+  webpage: ""
+  PyPI: "https://pypi.org/project/nd2/"
+  GitHub: "https://github.com/tlambert03/nd2"
+ 
+pillow:
+  webpage: "https://python-pillow.org/"
+  PyPI: "https://pypi.org/project/Pillow/"
+  GitHub: "https://github.com/python-pillow/Pillow"
+  
+pylibCZIrw:
+  webpage: ""
+  PyPI: "https://pypi.org/project/pylibCZIrw/"
+  GitHub: ""
+  
+aicspylibczi:
+  webpage: ""
+  PyPI: "https://pypi.org/project/aicspylibczi/"
+  GitHub: "https://github.com/AllenCellModeling/aicspylibczi"
+  
+fsspec:
+  webpage: "https://filesystem-spec.readthedocs.io/en/latest/"
+  PyPI: "https://pypi.org/project/fsspec/"
+  GitHub: "https://github.com/fsspec/filesystem_spec"
+  

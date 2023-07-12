@@ -62,7 +62,7 @@ def create_badges():
     )
 
     # Test (GitHub actions)
-    if config["repo_type"] in ["python_test", "python_build"]:
+    if config["repo_type"] in ["python_build", "python_test"]:
         badges["test"] = (
             f"[![Test](https://github.com/{REPO_OWNER}/{REPO_NAME}"
             f"/actions/workflows/test.yml/badge.svg)]"
@@ -75,7 +75,7 @@ def create_badges():
         
         python_str = config["python_version"]
 
-    elif config["repo_type"] in ["python_test", "python_build"]:
+    elif config["repo_type"] in ["python_build", "python_test"]:
         
         python_str = config["tested_python"]
         python_str = python_str.replace("[", "")
@@ -92,7 +92,17 @@ def create_badges():
     )
         
     # OS version(s)
-    if config["repo_type"] in ["python_test", "python_build"]:
+    badges["os"] = []
+    if config["repo_type"] in ["python_lite"]:
+
+        badges["os"].append(
+            f"![Windows Badge](https://img.shields.io/badge/Windows-"
+            f"latest-blue?logo=windows11&"
+            f"logoColor=rgb(149%2C157%2C165)&"
+            f"labelColor=rgb(50%2C60%2C65)) "
+        )
+
+    if config["repo_type"] in ["python_build", "python_test"]:
         
         os_name, os_version = [], []
         os_str = config["tested_os"]
@@ -104,7 +114,6 @@ def create_badges():
             os_name.append(name)
             os_version.append(version)
 
-        badges["os"] = []
         if "ubuntu" in os_name:
             idx = os_name.index("ubuntu")
             badges["os"].append(
@@ -134,61 +143,103 @@ def create_badges():
 
 badges = create_badges()
 
+#%% Get dependencies ----------------------------------------------------------
+
+def get_dependencies():
+
+    dependencies = []
+    dependency_list = []
+    start_append = False
+
+    # Extract dependencies
+    with open(ROOT_PATH / "requirements.txt", "r") as file:
+        for line in file:
+            line = line.strip()                  
+            if start_append and line and not line.startswith("#"):
+                dependency_list.append(line)
+            if line == "# Project":
+                start_append = True            
+
+    # Parse links.yml
+    with open(ROOT_PATH / "utils" / "links.yml", "r") as file:
+        try:
+            links = yaml.safe_load(file)
+        except yaml.YAMLError as exc:
+            print(exc)
+
+    for dependency in dependency_list:
+        for key, value in links.items():
+            if dependency in key:
+                dependencies.append(
+                    f"* {dependency}"
+                    f"[![PyPI logo](https://github.com/{REPO_OWNER}/{REPO_NAME}/"
+                    f"utils/img/pypi.svg)]"
+                    f"({links[key]['PyPI']})"
+                    )
+
+    return dependencies, dependency_list, links
+
+dependencies, dependency_list, links = get_dependencies()
+# print(dependency_list)
+# print(links)
+print(dependencies[0])
+
 #%% Assemble readme -----------------------------------------------------------
 
 def assemble_readme():
 
+    # Get instructions
+    if "python" in config["repo_type"]:
+        with open(ROOT_PATH / "utils" / "markdown" / "instructions_python.md", "r") as file:
+            instructions = file.read()
+    if "fiji" in config["repo_type"]:
+        with open(ROOT_PATH / "utils" / "markdown" / "instructions_fiji.md", "r") as file:
+            instructions = file.read()
+
+    # Get dependencies
+    dependencies = []
+    start_append = False
+    
+    with open(ROOT_PATH / "utils" / "links.yml", "r") as file:
+        try:
+            links = yaml.safe_load(file)
+        except yaml.YAMLError as exc:
+            print(exc)
+
+    with open(ROOT_PATH / "requirements.txt", "r") as file:
+        for line in file:
+            line = line.strip()                  
+            if start_append and line and not line.startswith("#"):
+                dependencies.append("* " + line + "\n")
+            if line == "# Project":
+                start_append = True            
+    dependencies = "".join(dependencies)
+    
     with open(ROOT_PATH / "README.md", "w") as file:
+
+        # Badges
         file.write(badges["author"] + "\n")
-        file.write(badges["license"] + "\n\n")
-        file.write(badges["test"] + "\n\n")
-        file.write(badges["python"] + "\n")
+        file.write(badges["license"] + "\n")
+        file.write("\n" + badges["python"] + "\n")
         for badge in badges["os"]:
             file.write(badge + "\n")
+        if config["repo_type"] in ["python_build", "python_test"]:
+            file.write("\n" + badges["test"] + "\n")
+
+        # Repo info
+        file.write("\n" + f"# {REPO_NAME}" + "\n") 
+        file.write("\n" + f"{github['description']}" + "\n")
+        file.write("\n" + f"## Overview" + "\n") 
+
+        # Installation
+        file.write("\n" + f"## Installation" + "\n") 
+        file.write("\n" + instructions + "\n") 
+
+        # Dependencies
+        file.write("\n" + f"## Dependencies" + "\n") 
+        file.write("\n" + dependencies + "\n")
 
 assemble_readme()
-
-# def assemble_readme():
-      
-#     # 
-#     title = f"# {REPO_NAME}"
-#     description = f"{github["description"]}"
-
-#     #
-#     if config["repo_type"] in ["python_lite", "python_test", "python_build"]:
-#         with open(ROOT_PATH / "utils" / "markdown" / "instructions_python.md", "r") as file:
-#             instructions = file.read()
-#     elif config["repo_type"] == "Fiji":
-#         with open(ROOT_PATH / "utils" / "markdown" / "instructions_fiji.md", "r") as file:
-#             instructions = file.read()
-
-#     #
-#     dependencies = []
-#     start_append = False
-#     with open(ROOT_PATH / "requirements.txt", "r") as file:
-#         for line in file:
-#             line = line.strip()
-#             if start_append and line and not line.startswith("#"):
-#                 dependencies.append("* " + line + "\n")
-#             if line == "# Project":
-#                 start_append = True
-#     dependencies = "".join(dependencies)
-    
-#     #   
-#     with open(ROOT_PATH / "README.md", "w") as file:
-#         file.write(python_badge)
-#         file.write(license_badge)
-#         if config["repo_type"] in ["python_test", "python_build"]:
-#             for os_badge in os_badges:
-#                 file.write(" " + os_badge)
-#         file.write("\n" + title + "\n" + description)
-#         file.write("\n\n" + "## Installation" + "\n" + instructions)
-#         file.write("\n\n" + "## Dependencies" + "\n" + dependencies)
-
-#     return license
-
-# license = assemble_readme()
-# print(license)
 
 #%% Replace placeholders ------------------------------------------------------
 
