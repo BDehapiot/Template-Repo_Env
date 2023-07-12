@@ -171,18 +171,18 @@ def get_dependencies():
         for key, value in links.items():
             if dependency in key:
                 dependencies.append(
-                    f"* {dependency}"
-                    f"[![PyPI logo](https://github.com/{REPO_OWNER}/{REPO_NAME}/"
-                    f"utils/img/pypi.svg)]"
-                    f"({links[key]['PyPI']})"
+                    f"* {dependency} "
+                    f"<span style='font-size: 0.75em;'>[home]"
+                    f"({links[key]['webpage']})</span> "
+                    f"<span style='font-size: 0.75em;'>[PyPI]"
+                    f"({links[key]['PyPI']})</span> "
+                    f"<span style='font-size: 0.75em;'>[GitHub]"
+                    f"({links[key]['GitHub']})</span>"
                     )
+                
+    return dependencies
 
-    return dependencies, dependency_list, links
-
-dependencies, dependency_list, links = get_dependencies()
-# print(dependency_list)
-# print(links)
-print(dependencies[0])
+dependencies = get_dependencies()
 
 #%% Assemble readme -----------------------------------------------------------
 
@@ -196,25 +196,6 @@ def assemble_readme():
         with open(ROOT_PATH / "utils" / "markdown" / "instructions_fiji.md", "r") as file:
             instructions = file.read()
 
-    # Get dependencies
-    dependencies = []
-    start_append = False
-    
-    with open(ROOT_PATH / "utils" / "links.yml", "r") as file:
-        try:
-            links = yaml.safe_load(file)
-        except yaml.YAMLError as exc:
-            print(exc)
-
-    with open(ROOT_PATH / "requirements.txt", "r") as file:
-        for line in file:
-            line = line.strip()                  
-            if start_append and line and not line.startswith("#"):
-                dependencies.append("* " + line + "\n")
-            if line == "# Project":
-                start_append = True            
-    dependencies = "".join(dependencies)
-    
     with open(ROOT_PATH / "README.md", "w") as file:
 
         # Badges
@@ -237,7 +218,8 @@ def assemble_readme():
 
         # Dependencies
         file.write("\n" + f"## Dependencies" + "\n") 
-        file.write("\n" + dependencies + "\n")
+        for dependency in dependencies:
+            file.write("\n" + dependency)
 
 assemble_readme()
 
