@@ -40,3 +40,17 @@ def setup_conda_env():
 setup_conda_env()
 
 #%% Setup repository ----------------------------------------------------------
+
+def setup_repo():
+
+    if platform.system() == "Windows":
+        init_repo_path = ROOT_PATH / "utils" / "init_repo.py"
+    else:
+        init_repo_path = ROOT_PATH.parent / "utils" / "init_repo.py"
+
+    subprocess.run([
+    'conda', 'run', '-n', ENV_NAME, 
+    'python', str(init_repo_path)
+    ], shell=True)
+
+setup_repo()

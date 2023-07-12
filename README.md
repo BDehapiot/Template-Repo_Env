@@ -10,6 +10,8 @@ Template repository for Python-based projects
 
 ## Overview
 
+Describe repository content and usage
+
 ## Installation
 
 <details> <summary>Windows</summary>
@@ -168,9 +170,9 @@ pip install -r requirements.txt
 
 ## Dependencies
 
-* numpy <span style='font-size: 0.75em;'>[home](https://numpy.org/)</span> <span style='font-size: 0.75em;'>[PyPI](https://pypi.org/project/numpy/)</span> <span style='font-size: 0.75em;'>[GitHub](https://github.com/numpy/numpy)</span>
-* scipy <span style='font-size: 0.75em;'>[home](https://scipy.org/)</span> <span style='font-size: 0.75em;'>[PyPI](https://pypi.org/project/scipy/)</span> <span style='font-size: 0.75em;'>[GitHub](https://github.com/scipy/scipy)</span>
-* pandas <span style='font-size: 0.75em;'>[home](https://pandas.pydata.org/)</span> <span style='font-size: 0.75em;'>[PyPI](https://pypi.org/project/pandas/)</span> <span style='font-size: 0.75em;'>[GitHub](https://github.com/pandas-dev/pandas)</span>
-* scikit-image <span style='font-size: 0.75em;'>[home](https://scikit-image.org/)</span> <span style='font-size: 0.75em;'>[PyPI](https://pypi.org/project/scikit-image/)</span> <span style='font-size: 0.75em;'>[GitHub](https://github.com/scikit-image/scikit-image)</span>
-* matplotlib <span style='font-size: 0.75em;'>[home](https://matplotlib.org/)</span> <span style='font-size: 0.75em;'>[PyPI](https://pypi.org/project/matplotlib/)</span> <span style='font-size: 0.75em;'>[GitHub](https://github.com/matplotlib/matplotlib)</span>
-* joblib <span style='font-size: 0.75em;'>[home](https://joblib.readthedocs.io/en/stable/)</span> <span style='font-size: 0.75em;'>[PyPI](https://pypi.org/project/joblib/)</span> <span style='font-size: 0.75em;'>[GitHub](https://github.com/joblib/joblib)</span>
+* [numpy](https://pypi.org/project/numpy/)
+* [scipy](https://pypi.org/project/scipy/)
+* [pandas](https://pypi.org/project/pandas/)
+* [scikit-image](https://pypi.org/project/scikit-image/)
+* [matplotlib](https://pypi.org/project/matplotlib/)
+* [joblib](https://pypi.org/project/joblib/)

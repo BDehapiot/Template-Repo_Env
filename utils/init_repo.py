@@ -171,13 +171,7 @@ def get_dependencies():
         for key, value in links.items():
             if dependency in key:
                 dependencies.append(
-                    f"* {dependency} "
-                    f"<span style='font-size: 0.75em;'>[home]"
-                    f"({links[key]['webpage']})</span> "
-                    f"<span style='font-size: 0.75em;'>[PyPI]"
-                    f"({links[key]['PyPI']})</span> "
-                    f"<span style='font-size: 0.75em;'>[GitHub]"
-                    f"({links[key]['GitHub']})</span>"
+                    f"* [{dependency}]({links[key]['PyPI']})"
                     )
                 
     return dependencies
@@ -188,12 +182,16 @@ dependencies = get_dependencies()
 
 def assemble_readme():
 
+    # Get overview
+    with open(ROOT_PATH / "utils" / "overview.md", "r") as file:
+            overview = file.read()
+
     # Get instructions
     if "python" in config["repo_type"]:
-        with open(ROOT_PATH / "utils" / "markdown" / "instructions_python.md", "r") as file:
+        with open(ROOT_PATH / "utils" / "instructions_python.md", "r") as file:
             instructions = file.read()
     if "fiji" in config["repo_type"]:
-        with open(ROOT_PATH / "utils" / "markdown" / "instructions_fiji.md", "r") as file:
+        with open(ROOT_PATH / "utils" / "instructions_fiji.md", "r") as file:
             instructions = file.read()
 
     with open(ROOT_PATH / "README.md", "w") as file:
@@ -211,6 +209,7 @@ def assemble_readme():
         file.write("\n" + f"# {REPO_NAME}" + "\n") 
         file.write("\n" + f"{github['description']}" + "\n")
         file.write("\n" + f"## Overview" + "\n") 
+        file.write("\n" + overview + "\n") 
 
         # Installation
         file.write("\n" + f"## Installation" + "\n") 
