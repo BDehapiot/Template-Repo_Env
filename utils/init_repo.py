@@ -1,7 +1,7 @@
 #%% Imports -------------------------------------------------------------------
 
-import re
 import yaml
+import shutil
 import urllib
 import requests
 from pathlib import Path
@@ -33,6 +33,56 @@ def extract_info():
 
 config, github = extract_info()
 
+#%% Setup repository ----------------------------------------------------------
+
+def setup_repo():
+
+    # Define paths
+    ressources_path = Path(ROOT_PATH / "utils" / "ressources")
+    backup_path = Path(ROOT_PATH / "utils" / "backup")
+    workflows_path = Path(ROOT_PATH / ".github" / "workflows")
+    tests_path = Path(ROOT_PATH / "tests")
+
+    if config["repo_type"] in ["python_lite"]:
+        
+        try: (ROOT_PATH / "pyproject.toml").unlink()
+        except FileNotFoundError: pass
+        try: (ROOT_PATH / "setup.cfg").unlink()
+        except FileNotFoundError: pass
+
+    if config["repo_type"] in ["python_lite", "python_build"]:
+
+        try: shutil.rmtree(ROOT_PATH / ".github")
+        except FileNotFoundError: pass
+        try: shutil.move(ROOT_PATH / "tests", backup_path / "tests")
+        except FileNotFoundError: pass
+
+    if config["repo_type"] in ["python_build", "python_test"]:
+
+        try: 
+            shutil.move(backup_path / "pyproject.toml", ROOT_PATH / "pyproject.toml")
+        except FileNotFoundError:
+            shutil.copy(ressources_path / "pyproject.toml", ROOT_PATH / "pyproject.toml")
+        try: 
+            shutil.move(backup_path / "setup.cfg", ROOT_PATH / "setup.cfg")
+        except FileNotFoundError:
+            shutil.copy(ressources_path / "setup.cfg", ROOT_PATH / "setup.cfg")
+
+    if config["repo_type"] in ["python_test"]:
+
+        try: 
+            shutil.move(backup_path / ".github", ROOT_PATH / ".github")
+        except FileNotFoundError:
+            workflows_path.mkdir(parents=True, exist_ok=True)
+            shutil.copy(ressources_path / "test.yml", workflows_path / "test.yml")
+        try: 
+            shutil.move(backup_path / "tests", ROOT_PATH / "tests")
+        except FileNotFoundError:
+            tests_path.mkdir(parents=True, exist_ok=True)
+            (tests_path / ".gitkeep").touch()
+
+setup_repo()
+
 #%% Create badges -------------------------------------------------------------
 
 def create_badges():
@@ -61,6 +111,18 @@ def create_badges():
         f"labelColor=rgb(50%2C60%2C65)) "
     )
 
+    # Fiji
+    if config["repo_type"] in ["fiji"]:
+        badges["fiji"] = (
+            f"![IJM Badge](https://img.shields.io/badge/-"
+            f"ImageJMacro-blue?logo=ImageJ&"
+            f"logoColor=rgb(149%2C157%2C165)&"
+            f"labelColor=rgb(50%2C60%2C65)) "
+        )
+
+    # ![Static Badge](https://img.shields.io/badge/Code-ImageJMacro-blue?logo=ImageJ&logoColor=rgb(149%2C157%2C165))
+
+
     # Test (GitHub actions)
     if config["repo_type"] in ["python_build", "python_test"]:
         badges["test"] = (
@@ -71,29 +133,31 @@ def create_badges():
         )
 
     # Python version(s)
-    if config["repo_type"] in ["python_lite"]:
-        
-        python_str = config["python_version"]
+    if "python" in config["repo_type"]:
+    
+        if config["repo_type"] in ["python_lite", "python_build"]:
+            
+            python_str = config["python_version"]
 
-    elif config["repo_type"] in ["python_build", "python_test"]:
-        
-        python_str = config["tested_python"]
-        python_str = python_str.replace("[", "")
-        python_str = python_str.replace("]", "")
-        python_str = python_str.replace("'", "")
-        python_str = python_str.replace(",", " |")
+        elif config["repo_type"] in ["python_test"]:
+            
+            python_str = config["tested_python"]
+            python_str = python_str.replace("[", "")
+            python_str = python_str.replace("]", "")
+            python_str = python_str.replace("'", "")
+            python_str = python_str.replace(",", " |")
 
-    python_url = urllib.parse.quote(python_str)
-    badges["python"] = (
-        f"![Python Badge](https://img.shields.io/badge/Python-"
-        f"{python_url}-blue?logo=python&"
-        f"logoColor=rgb(149%2C157%2C165)&"
-        f"labelColor=rgb(50%2C60%2C65)) "
-    )
+        python_url = urllib.parse.quote(python_str)
+        badges["python"] = (
+            f"![Python Badge](https://img.shields.io/badge/Python-"
+            f"{python_url}-blue?logo=python&"
+            f"logoColor=rgb(149%2C157%2C165)&"
+            f"labelColor=rgb(50%2C60%2C65)) "
+        )
         
     # OS version(s)
     badges["os"] = []
-    if config["repo_type"] in ["python_lite"]:
+    if config["repo_type"] in ["python_lite", "python_build"]:
 
         badges["os"].append(
             f"![Windows Badge](https://img.shields.io/badge/Windows-"
@@ -102,7 +166,7 @@ def create_badges():
             f"labelColor=rgb(50%2C60%2C65)) "
         )
 
-    if config["repo_type"] in ["python_build", "python_test"]:
+    if config["repo_type"] in ["python_test"]:
         
         os_name, os_version = [], []
         os_str = config["tested_os"]
@@ -161,7 +225,7 @@ def get_dependencies():
                 start_append = True            
 
     # Parse links.yml
-    with open(ROOT_PATH / "utils" / "links.yml", "r") as file:
+    with open(ROOT_PATH / "utils" / "ressources" / "links.yml", "r") as file:
         try:
             links = yaml.safe_load(file)
         except yaml.YAMLError as exc:
@@ -183,15 +247,15 @@ dependencies = get_dependencies()
 def assemble_readme():
 
     # Get overview
-    with open(ROOT_PATH / "utils" / "overview.md", "r") as file:
+    with open(ROOT_PATH / "utils" / "ressources" / "overview.md", "r") as file:
             overview = file.read()
 
     # Get instructions
     if "python" in config["repo_type"]:
-        with open(ROOT_PATH / "utils" / "instructions_python.md", "r") as file:
+        with open(ROOT_PATH / "utils" / "ressources" / "instructions_python.md", "r") as file:
             instructions = file.read()
     if "fiji" in config["repo_type"]:
-        with open(ROOT_PATH / "utils" / "instructions_fiji.md", "r") as file:
+        with open(ROOT_PATH / "utils" / "ressources" / "instructions_fiji.md", "r") as file:
             instructions = file.read()
 
     with open(ROOT_PATH / "README.md", "w") as file:
@@ -199,10 +263,13 @@ def assemble_readme():
         # Badges
         file.write(badges["author"] + "\n")
         file.write(badges["license"] + "\n")
-        file.write("\n" + badges["python"] + "\n")
+        if "fiji" in config["repo_type"]:
+            file.write("\n" + badges["fiji"] + "\n")
+        if "python" in config["repo_type"]:
+            file.write("\n" + badges["python"] + "\n")
         for badge in badges["os"]:
             file.write(badge + "\n")
-        if config["repo_type"] in ["python_build", "python_test"]:
+        if config["repo_type"] in ["python_test"]:
             file.write("\n" + badges["test"] + "\n")
 
         # Repo info
@@ -239,9 +306,11 @@ def replace_placeholders(file_path):
     txt = txt.replace("{{ repo_description }}", github["description"])
 
     # Update file
-    with open(file_path.with_stem(file_path.stem + "_copy"), "w") as file:
+    with open(file_path, "w") as file:
         file.write(txt)
 
 replace_placeholders(ROOT_PATH / "README.md")
-replace_placeholders(ROOT_PATH / "setup.cfg")
-replace_placeholders(ROOT_PATH / ".github" / "workflows" / "test.yml")
+if config["repo_type"] in ["python_build", "python_test"]:
+    replace_placeholders(ROOT_PATH / "setup.cfg")
+if config["repo_type"] in ["python_test"]:
+    replace_placeholders(ROOT_PATH / ".github" / "workflows" / "test.yml")

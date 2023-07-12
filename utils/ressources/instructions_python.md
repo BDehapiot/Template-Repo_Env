@@ -1,8 +1,8 @@
 <details> <summary>Windows</summary>
 
-### 1 - Download the GitHub repository: 
+### 1 - Download GitHub repository: 
 ![Static Badge](https://img.shields.io/badge/%20Code%20-%20blue?color=rgb(30%2C%20135%2C%2060))
-- Download the GitHub repository by clicking the green `Code` button and select `Download ZIP`
+- Download GitHub repository by clicking the green `Code` button and select `Download ZIP`
 - Unzip the file to a known location (e.g. `C:\Users\YourUsername\Desktop`)
 
 ### 2 - Install miniconda: 
@@ -43,9 +43,9 @@ pip install -r requirements.txt
 
 <details> <summary>MacOS</summary>
 
-### 1 - Download the GitHub repository: 
+### 1 - Download GitHub repository: 
 ![Static Badge](https://img.shields.io/badge/%20Code%20-%20blue?color=rgb(30%2C%20135%2C%2060))
-- Download the GitHub repository by clicking the green `Code` button and select `Download ZIP`
+- Download GitHub repository by clicking the green `Code` button and select `Download ZIP`
 - Unzip the file to a known location (e.g. `~/Desktop`)
 
 ### 2 - Install miniconda:
@@ -98,9 +98,9 @@ pip install -r requirements.txt
 
 <details> <summary>Linux</summary>
 
-### 1 - Download the GitHub repository: 
+### 1 - Download GitHub repository: 
 ![Static Badge](https://img.shields.io/badge/%20Code%20-%20blue?color=rgb(30%2C%20135%2C%2060))
-- Download the GitHub repository by clicking the green `Code` button and select `Download ZIP`
+- Download GitHub repository by clicking the green `Code` button and select `Download ZIP`
 - Unzip the file to a known location (e.g. `~/Desktop`)
   
 ### 2 - Install miniconda:
