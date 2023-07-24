@@ -16,8 +16,8 @@ ENV_NAME = REPO_NAME.split("_", 1)[1] if "_" in REPO_NAME else REPO_NAME
 def setup_conda_env():
 
     # Get python version from config.yml
-    with open(ROOT_PATH / "utils" / "config.yml", "r") as file:
-        txt = file.read()
+with open(ROOT_PATH / "utils" / "config.yml", "r") as file:
+    txt = file.read()
     match = re.search(r'python_version: "([^"]*)"', txt)
     if match: python_version = match.group(1)
 
