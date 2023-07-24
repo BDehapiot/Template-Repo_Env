@@ -1,0 +1,17 @@
+name: env
+
+channels:
+  - conda-forge
+      
+dependencies:
+  - python=3.10
+  - pyyaml
+  - requests
+  - pytest
+  - pytest-cov
+  - numpy
+  - scipy
+  - pandas
+  - scikit-image
+  - matplotlib-base
+  - joblib
